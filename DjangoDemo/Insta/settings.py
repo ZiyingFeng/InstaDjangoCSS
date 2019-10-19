@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'InstaApp',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -118,4 +119,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/statics/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'statics')]
+# 这个命令与前面TEMPLATES中的'DIRS': [os.path.join(BASE_DIR, 'templates')]是类似的
+# 只有这样才能使app正常访问静态文件
+
+LOGIN_REDIRECT_URL = 'posts'
+
+LOGOUT_REDIRECT_URL = 'posts'
+
+AUTH_USER_MODEL = 'InstaApp.InstaUser'
+#这里是让Django中的auth使用用户自定义的model

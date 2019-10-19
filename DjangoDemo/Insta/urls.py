@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-
+from InstaApp.views import SignUp
 #这里使用了第三种including another URLconf
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('instaapp/', include('InstaApp.urls')),
     #因为本来就是一个python文件所以include中不用写.py
     #这句的意思是当有人传送insta/的时候，请寻找InstaApp下面的urls.py这个文件
+    path('auth/', include('django.contrib.auth.urls')),
+    path('auth/signup', SignUp.as_view(), name='signup'),
 ]
