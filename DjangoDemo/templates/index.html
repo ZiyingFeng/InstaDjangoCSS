@@ -3,7 +3,7 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'make_post' %}">Make Post</a>
+    <a href="{% url 'make_post' %}"><i class="fa fa-plus" aria-hidden="true">Make Post</i></a>
     <!--当用户点击Make Post时候，就会去寻找名字叫'make_post'的url，在url中定义了'make_post'这个的跳转post/new/-->
     <!--跳转之后就会使用PostCreateView，这个view把model的所有的field传递给post_create.html这个template-->
     <!--在这个template中把form给render出来-->

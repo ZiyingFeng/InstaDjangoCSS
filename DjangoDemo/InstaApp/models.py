@@ -20,7 +20,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         # self指当前object，因为Post是一个类，并不是一个object
-        #return reverse("helloDjango")
+        # return reverse("helloDjango")
         # reverse从urls.py寻找名字为helloDjango的url
         return reverse("post_detail", args=[str(self.id)])
 
@@ -33,4 +33,13 @@ class InstaUser(AbstractUser):
         blank = True,
         null = True
     )
-#这是一个用户自定义的替代auth自带的model，因为有时候注册的时候需要知道profile picture或收集更多其他信息而不只是名字密码
+# 这是一个用户自定义的替代auth自带的model，因为有时候注册的时候需要知道profile picture或收集更多其他信息而不只是名字密码
+
+
+class Like(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete = models.CASCADE,
+        # 当post被删除的时候所有的Like都被删除，这是on_delete = models.CASCADE这句的意思
+        related_name = "likes"
+    )
